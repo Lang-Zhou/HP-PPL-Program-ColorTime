@@ -1,0 +1,56 @@
+#pragma mode( separator(.,;) integer(h32) )
+//How to use:
+//Shift+Help 2 times to mark user mode,
+//press ALPHA + _(Space) to start;
+//to abort,press "On".
+//=====================================
+//Program Discription: 
+//This program transforms current time
+//into RGB form and displays the color
+//as background.You can regard it as a 
+//kind of screensaver.
+//=====================================
+//Author: Lang Zhou
+//E-Mail: zhoulang731@gmail.com
+//Version: 1.0
+//Create Date: 2019/1/30
+//Firmware Target: Above 10637(20160829)
+//NO REUPLOAD WITHOUT PERMISSION
+//=====================================
+main()
+BEGIN
+LOCAL time,ct,hour,min,sec;
+LOCAL sigs1,sigs2;
+time:=STRING(Time);
+IF DIM(time)==9
+THEN
+time:=time;
+ELSE
+time:="0"+time;
+END;
+
+time:=REPLACE(time,"¡ã",":");
+time:=REPLACE(time,"¡ä",":");
+time:=REPLACE(time,"¡å","");
+hour:=EXPR(MID(time,1,2));
+min:=EXPR(MID(time,4,2));
+sec:=EXPR(MID(time,7,2));
+sigs1:=3600*hour+60*min+sec;
+sigs2:=60*min+sec;
+hour:=255*sigs1/86400;
+min:=255*sigs2/3600;
+sec:=255*sec/60;
+RECT_P((0,0),(320,240),RGB(hour,min,sec));
+TEXTOUT_P(time,G0,115,100,7,RGB(255,255,255),200);
+FREEZE
+END;
+
+KEY KA_Space
+BEGIN
+While 1+1==2 
+DO
+main;
+WAIT(1);
+END;
+
+END;
