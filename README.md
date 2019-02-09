@@ -1,7 +1,7 @@
 # HP-PPL-Program-ColorTime
 A program which transforms current time into RGB format and displays the color as background.
 
-It is a simulation of the famous scrennsaver "the Color Clock" on Windows.
+It is a simulation of the famous screensaver "the Color Clock" on Windows.
 
 Author: Lang Zhou
 
